@@ -1,0 +1,91 @@
+{% extends "products/base.html" %} 
+{% load static %}
+{% block title %} Products - Django Shop 
+{% endblock %}
+{% block content %}
+
+
+<div class="container py-5">
+  <!-- Page Header -->
+  <div class="text-center mb-5">
+    <h1 class="fw-bold display-5">Our Products</h1>
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-6">
+        <input
+          type="text"
+          id="productSearch"
+          class="form-control form-control-lg"
+          placeholder="🔍 Search products..."
+        />
+      </div>
+    </div>
+
+    <p class="text-muted fs-5">Find the best products at the best price</p>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="row g-4">
+    {% for product in products %}
+
+    <div class="col-sm-6 col-lg-4 product-card">
+      <div class="card h-100 border-0 shadow-sm">
+        <!-- Product Image -->
+        {% if product.image %}
+
+        <div class="p-3 bg-light">
+          <img
+            src="{{ product.image.url }}"
+            class="card-img-top"
+            alt="{{ product.product_name }}"
+            style="height: 230px; object-fit: contain"
+          />
+        </div>
+
+        {% endif %}
+
+        <!-- Product Information -->
+        <div class="card-body d-flex flex-column">
+          <small class="text-muted mb-2 product-category"> {{ product.category }} </small>
+
+          <h5 class="card-title fw-bold product-name">
+            {{ product.product_name }}
+          </h5>
+
+          <h4 class="text-primary fw-bold mb-3">৳{{ product.price }}</h4>
+
+          <p class="card-text text-muted">
+            {{ product.description|truncatewords:15 }}
+          </p>
+
+          <div class="mt-auto d-flex gap-2">
+            <a
+              href="{% url 'product_detail' product.id %}"
+              class="btn btn-outline-primary flex-grow-1"
+            >
+              View Details
+            </a>
+
+            <a
+              href="{% url 'add_to_cart' product.id %}"
+              class="btn btn-primary flex-grow-1"
+            >
+              Add to Cart
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% empty %}
+
+    <div class="col-12">
+      <div class="alert alert-info text-center">No products available.</div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+<script src="{% static 'products/js/script.js' %}"></script>
+
+{% endblock %}

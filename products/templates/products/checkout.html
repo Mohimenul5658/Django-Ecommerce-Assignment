@@ -1,0 +1,145 @@
+{% extends "products/base.html" %} {% block title %} Checkout - Django Shop 
+{% endblock %} {% block content %}
+
+<div class="container py-5">
+  <!-- Page Header -->
+  <div class="text-center mb-5">
+    <h1 class="fw-bold">Checkout</h1>
+
+    <p class="text-muted">Complete your order by providing your information</p>
+  </div>
+
+  <div class="row g-4">
+    <!-- Customer Information -->
+    <div class="col-lg-7">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h4 class="fw-bold mb-4">Customer Information</h4>
+
+          <form method="POST">
+            {% csrf_token %}
+
+            <!-- Name -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold"> Customer Name </label>
+
+              <input
+                type="text"
+                name="name"
+                class="form-control form-control-lg"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold"> Phone Number </label>
+
+              <input
+                type="tel"
+                name="phone"
+                class="form-control form-control-lg"
+                placeholder="01XXXXXXXXX"
+                required
+              />
+            </div>
+
+            <!-- Address -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold"> Delivery Address </label>
+
+              <textarea
+                name="address"
+                class="form-control"
+                rows="5"
+                placeholder="Enter your complete delivery address"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg w-100">
+              🛍️ Place Order
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="col-lg-5">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h4 class="fw-bold mb-4">Order Summary</h4>
+
+          {% for item in cart_items %}
+
+          <div class="d-flex align-items-center mb-4">
+            <!-- Product Image -->
+            <div
+              class="bg-light rounded p-2 me-3"
+              style="width: 80px; height: 80px"
+            >
+              {% if item.product.image %}
+
+              <img
+                src="{{ item.product.image.url }}"
+                alt="{{ item.product.product_name }}"
+                class="img-fluid"
+                style="width: 100%; height: 100%; object-fit: contain"
+              />
+
+              {% endif %}
+            </div>
+
+            <!-- Product Info -->
+            <div class="flex-grow-1">
+              <h6 class="fw-bold mb-1">{{ item.product.product_name }}</h6>
+
+              <small class="text-muted">
+                {{ item.quantity }} × ৳{{ item.product.price }}
+              </small>
+            </div>
+
+            <!-- Subtotal -->
+            <strong> ৳{{ item.subtotal }} </strong>
+          </div>
+
+          {% endfor %}
+
+          <hr />
+
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted"> Subtotal </span>
+
+            <span> ৳{{ total_price }} </span>
+          </div>
+
+          <div class="d-flex justify-content-between mb-3">
+            <span class="text-muted"> Delivery </span>
+
+            <span class="text-success fw-semibold"> Free </span>
+          </div>
+
+          <hr />
+
+          <div class="d-flex justify-content-between">
+            <h5 class="fw-bold">Total</h5>
+
+            <h5 class="text-primary fw-bold">৳{{ total_price }}</h5>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back to Cart -->
+
+      <div class="text-center mt-3">
+        <a href="{% url 'cart' %}" class="text-decoration-none">
+          ← Back to Cart
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
