@@ -75,6 +75,7 @@ This project allows users to browse products, view product details, add products
 
 ## Project Structure
 
+
 ```text
 django-ecommerce/
 │
@@ -166,7 +167,14 @@ Quantity
 Total price
 Created date
 
-
+```
+<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/df0e78f3-467b-4ba3-ab86-1fd6e787f593" />
+<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/392e4c3b-abb5-40b0-9448-f18c58a77826" />
+<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/fed0e328-22c3-46d4-9ea6-82ce5bf4a6d4" />
+<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/8f15da3c-cdf2-4c4d-b456-e276c8e14208" />
+<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/b8f6c17b-ead7-4105-8203-f32917e229dd" />
+<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/eb0d37e5-4f8c-4629-b3a0-3cd14321510e" />
+<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/9dc6330c-6e4d-40ff-afab-5fb495524294" />
 
 
 
